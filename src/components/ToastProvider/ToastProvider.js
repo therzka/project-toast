@@ -1,7 +1,7 @@
 import React from "react"
 
 export const ToastContext = React.createContext()
-import useEscapeKey from "../../hooks/useEscapeKey"
+import useKeydown from "../../hooks/useKeydown"
 
 function ToastProvider({ children }) {
 	const [toasts, setToasts] = React.useState([])
@@ -17,9 +17,7 @@ function ToastProvider({ children }) {
 		setToasts((currentToasts) => currentToasts.filter((toast) => toast.id !== id))
 	}
 
-	React.useEffect(() => {
-		useEscapeKey(() => setToasts([]))
-	}, [])
+	useKeydown("Escape", () => setToasts([]))
 
 	return <ToastContext.Provider value={{ toasts, createToast, handleDismissClick }}>{children}</ToastContext.Provider>
 }
