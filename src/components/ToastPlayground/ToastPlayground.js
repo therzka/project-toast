@@ -27,7 +27,7 @@ function ToastPlayground() {
 				<h1>Toast Playground</h1>
 			</header>
 
-			{toastState.toasts && <ToastShelf />}
+			{toastState?.toasts && <ToastShelf />}
 
 			<form className={styles.controlsWrapper} onSubmit={(event) => generateToast(event)}>
 				<div className={styles.row}>
