@@ -1,12 +1,13 @@
 import React from 'react';
 
 import Toast from '../Toast';
-import styles from './ToastShelf.module.css';
+import { ToastContext } from "../ToastProvider/ToastProvider"
+import styles from "./ToastShelf.module.css"
 
-function ToastShelf({ toasts, setToasts }) {
-	function handleDismissClick(id) {
-		setToasts((currentToasts) => currentToasts.filter((toast) => toast.id !== id))
-	}
+function ToastShelf() {
+	const toastState = React.useContext(ToastContext)
+	const toasts = toastState.toasts || []
+	const handleDismissClick = toastState.handleDismissClick
 
 	return (
 		<ol className={styles.wrapper}>
